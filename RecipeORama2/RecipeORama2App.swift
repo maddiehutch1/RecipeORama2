@@ -2,7 +2,7 @@
 //  RecipeORama2App.swift
 //  RecipeORama2
 //
-//  Created by IS 543 on 12/7/24.
+//  Created by Madison Hutchings on 12/7/24.
 //
 
 import SwiftUI
@@ -10,23 +10,33 @@ import SwiftData
 
 @main
 struct RecipeORama2App: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    
+    // set up container and view model
+    let container: ModelContainer
+    let viewModel: RecipeViewModel
+    
     var body: some Scene {
+        
+        // display view of Recipes that uses the container and viewModel
         WindowGroup {
-            ContentView()
+            RecipeViewCatalog()
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(container)
+        .environment(viewModel)
+    }
+    
+    // initializes the app with the container
+    init() {
+        do {
+            container = try ModelContainer(for: Recipe.self)
+        } catch {
+            fatalError("""
+                Failed to create ModelContainer for Recipe. If you made a change
+                to the Model, then uninstall the app and restart it from XCode.
+                """)
+        }
+        
+        // sets viewModel equal to container's main Context
+        viewModel = RecipeViewModel(container.mainContext)
     }
 }
