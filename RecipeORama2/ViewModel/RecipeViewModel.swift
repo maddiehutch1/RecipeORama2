@@ -2,7 +2,7 @@
 //  RecipeViewModel.swift
 //  RecipeORama2
 //
-//  Created by IS 543 on 12/7/24.
+//  Created by Madison Hutchings on 12/7/24.
 //
 
 import Foundation
@@ -37,12 +37,15 @@ class RecipeViewModel {
     
     // MARK: - User intents
     
+    func refreshData() {
+        fetchData()
+    }
     
     // MARK: - Private helpers
     
     // WHY DO WE NEED THIS when we already have the fetchRecipes and fetchFavorites functions?
     private func fetchData() {
-        try? modelContext.save()
+        saveAllChanges()
         
         fetchRecipes()
         fetchFavorites()
@@ -56,7 +59,7 @@ class RecipeViewModel {
     
     // fetch all recipes
     private func fetchRecipes() {
-        try? modelContext.save()
+        saveAllChanges()
         
         let fetchDescriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\.title)])
         
@@ -99,6 +102,10 @@ class RecipeViewModel {
         }
         
         categories = Array(tags)
+    }
+    
+    func saveAllChanges() {
+        try? modelContext.save()
     }
     
 }

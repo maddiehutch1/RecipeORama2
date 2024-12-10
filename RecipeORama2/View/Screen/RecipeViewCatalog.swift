@@ -2,7 +2,7 @@
 //  RecipeViewCatalog.swift
 //  RecipeORama2
 //
-//  Created by IS 543 on 12/7/24.
+//  Created by Madison Hutchings on 12/7/24.
 //
 
 import SwiftUI
@@ -82,9 +82,4 @@ struct RecipeViewCatalog: View {
             // NEEDSWORK
         }
     }
-}
-
-#Preview {
-    RecipeViewCatalog()
-        .modelContainer(for: Item.self, inMemory: true)
 }
