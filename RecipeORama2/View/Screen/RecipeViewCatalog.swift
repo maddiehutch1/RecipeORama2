@@ -12,6 +12,8 @@ import MarkdownUI
 struct RecipeViewCatalog: View {
     @Environment(RecipeViewModel.self) private var viewModel
 
+    @State private var showAddEditSheet = false
+    
     var body: some View {
         NavigationSplitView {
             List {
@@ -35,6 +37,9 @@ struct RecipeViewCatalog: View {
                         Text(category)
                     }
                 }
+            }
+            .sheet(isPresented: $showAddEditSheet) {
+                AddEditRecipeSheet(editRecipe: nil)
             }
         } content: {
             
@@ -72,7 +77,7 @@ struct RecipeViewCatalog: View {
     // function to add a new recipe
     private func addItem() {
         withAnimation {
-           // NEEDSWORK
+            showAddEditSheet = true
         }
     }
 

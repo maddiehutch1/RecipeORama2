@@ -41,6 +41,16 @@ class RecipeViewModel {
         fetchData()
     }
     
+    func saveRecipe(_ recipe: Recipe) {
+        modelContext.insert(recipe)
+        fetchData()
+    }
+    
+    func update(_ recipe: Recipe) {
+        saveAllChanges()
+        fetchData()
+    }
+    
     // MARK: - Private helpers
     
     // WHY DO WE NEED THIS when we already have the fetchRecipes and fetchFavorites functions?
