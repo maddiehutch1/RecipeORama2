@@ -54,5 +54,55 @@ let sampleRecipes = [
         tags: "dessert, American",
         difficultyLevel: "Easy",
         isFavorite: true
+    ),
+    Recipe(
+        title: "Potato Bacon soup",
+        ingredients: """
+            Potatoes
+            Milk
+            Corn
+            Cream
+            Onions
+            Salt
+            Pepper
+            Bacon
+            """,
+        instructions: """
+            1. Do this
+            2. Then this
+            3. Mmmhmm, then that
+            4. Tada
+            """,
+        author: "Mom",
+        date: Date(),
+        servings: "10",
+        tags: "American, Soup",
+        difficultyLevel: "Easy",
+        isFavorite: true
+    ),
+    
+    Recipe(
+        title: "BLT Sandwich",
+        ingredients: """
+            Bacon
+            Lettuce
+            Tomato
+            Subway paprika ranch
+            Bread - toasted
+            """,
+        instructions: """
+            1. Toast the bread
+            2. Fry the bacon
+            3. Chop tomato and lettuce
+            4. Put em all togetha
+            5. Hint of ranch
+            6. Tada
+            """,
+        author: "Me",
+        date: Date(),
+        servings: "1",
+        tags: "Lunch, Sandwich, American",
+        difficultyLevel: "Easy",
+        isFavorite: false
     )
 ]
