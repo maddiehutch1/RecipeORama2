@@ -13,6 +13,11 @@ struct RecipeViewCatalog: View {
     @Environment(RecipeViewModel.self) private var viewModel
 
     @State private var showAddEditSheet = false
+    @State private var searchText: String = ""
+    
+    // everything with filteredRecipes was recommended by Claude AI
+    // allows user to still see filtered recipes without changing back to default list
+    @State private var filteredRecipes: [Recipe] = []
     
     var body: some View {
         NavigationSplitView {
@@ -60,22 +65,33 @@ struct RecipeViewCatalog: View {
     // function that displays list of recipes on nav bar that link to the main view's details
     private func recipeList(for recipes: [Recipe], with title: String) -> some View {
         List {
-            ForEach(recipes) { recipe in
+            ForEach(filteredRecipes.isEmpty ? recipes : filteredRecipes) { recipe in
                 NavigationLink(recipe.title, destination: RecipeDetailView(recipe: recipe))
             }
             .onDelete(perform: deleteRecipe)
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
+        .onChange(of: searchText) { oldValue, newValue in
+            filteredRecipes = newValue.isEmpty ? [] : recipes.filter { recipe in
+                recipe.title.lowercased().contains(newValue.lowercased())
             }
-            ToolbarItem {
+        }
+        
+        .navigationTitle(title)
+        .searchable(text: $searchText) {
+            ForEach(recipes.filter {
+                $0.title.lowercased().contains(searchText.lowercased())
+            }) { recipe in
+                NavigationLink(recipe.title, destination: RecipeDetailView(recipe: recipe))
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: addItem) {
                     Label("Add Item", systemImage: "plus")
                 }
+                EditButton()
             }
         }
-        .navigationTitle(title)
     }
     
     // function to add a new recipe
@@ -91,6 +107,13 @@ struct RecipeViewCatalog: View {
             for index in offsets {
                 viewModel.delete(viewModel.recipes[index])
             }
+        }
+    }
+    
+    private var searchResults: [Recipe] {
+        guard !searchText.isEmpty else { return viewModel.recipes }
+        return viewModel.recipes.filter { recipe in
+            recipe.title.lowercased().contains(searchText.lowercased())
         }
     }
 }
