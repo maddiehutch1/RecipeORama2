@@ -18,23 +18,26 @@ struct RecipeViewCatalog: View {
         NavigationSplitView {
             List {
                 // list of all recipes
-                NavigationLink(destination: recipeList(for: viewModel.recipes, with: "All Recipes" )) {
-                    Text("Browse all recipes")
+                Section(header: Text("GENERAL")) {
+                    NavigationLink(destination: recipeList(for: viewModel.recipes, with: "All Recipes" )) {
+                        Text("🍽️ All recipes")
+                    }
+                    
+                    // list of all favorite recipes
+                    NavigationLink(destination: recipeList(for: viewModel.favoriteRecipes, with: "Favorite Recipes")) {
+                        Text("❤️ Favorites")
+                    }
                 }
-                
-                // list of all favorite recipes
-                NavigationLink(destination: recipeList(for: viewModel.favoriteRecipes, with: "Favorite Recipes")) {
-                    Text("View favorite recipes")
-                }
-                
                 // list of recipes per each category
-                ForEach(viewModel.categories, id: \.self) { category in
-                    NavigationLink(
-                        destination: recipeList(
-                            for: viewModel.recipes(for: category),
-                            with: "\(category) Recipes")
-                    ) {
-                        Text(category)
+                Section(header: Text("CATEGORIES")) {
+                    ForEach(viewModel.categories, id: \.self) { category in
+                        NavigationLink(
+                            destination: recipeList(
+                                for: viewModel.recipes(for: category),
+                                with: "\(category) Recipes")
+                        ) {
+                            Text(category)
+                        }
                     }
                 }
             }
@@ -60,11 +63,12 @@ struct RecipeViewCatalog: View {
             ForEach(recipes) { recipe in
                 NavigationLink(recipe.title, destination: RecipeDetailView(recipe: recipe))
             }
+            .onDelete(perform: deleteRecipe)
         }
         .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    EditButton()
-//                }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
             ToolbarItem {
                 Button(action: addItem) {
                     Label("Add Item", systemImage: "plus")
@@ -82,9 +86,11 @@ struct RecipeViewCatalog: View {
     }
 
     // function to delete recipes that are not needed anymore
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteRecipe(offsets: IndexSet) {
         withAnimation {
-            // NEEDSWORK
+            for index in offsets {
+                viewModel.delete(viewModel.recipes[index])
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 final class Recipe {
+    // var id: String { title }
     var title: String
     var ingredients: String
     var instructions: String

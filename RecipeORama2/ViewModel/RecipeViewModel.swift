@@ -51,6 +51,11 @@ class RecipeViewModel {
         fetchData()
     }
     
+    func delete(_ recipe: Recipe) {
+        modelContext.delete(recipe)
+        fetchData()
+    }
+    
     // MARK: - Private helpers
     
     // WHY DO WE NEED THIS when we already have the fetchRecipes and fetchFavorites functions?

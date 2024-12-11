@@ -55,6 +55,7 @@ struct AddEditRecipeSheet: View {
                     TextField("Difficulty Level", text: $recipe.difficultyLevel)
                     TextField("Ingredients", text: $recipe.ingredients)
                     TextField("Instructions", text: $recipe.instructions)
+                    TextField("Categories", text: $recipe.tags)
                     
                     
                     //            Picker("Category", selection: $selectedCategory) {
