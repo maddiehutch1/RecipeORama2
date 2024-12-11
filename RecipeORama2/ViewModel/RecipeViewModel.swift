@@ -27,11 +27,19 @@ class RecipeViewModel {
     private(set) var recipes: [Recipe] = []
     private(set) var favoriteRecipes: [Recipe] = []
     private(set) var categories: [String] = []
+    private(set) var difficultyLevels: [String] = ["Easy", "Medium", "Hard"]
     
     // groups recipes with same categories together
-    func recipes(for category: String) -> [Recipe] {
+    func recipeTags(for category: String) -> [Recipe] {
         return recipes.filter {
             $0.tags.lowercased().contains(category.lowercased())
+        }
+    }
+    
+    // groups recipes with same categories together
+    func recipeLevels(for level: String) -> [Recipe] {
+        return recipes.filter {
+            $0.difficultyLevel.lowercased().contains(level.lowercased())
         }
     }
     

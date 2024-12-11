@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+//enum difficultyLevel: String, Identifiable {
+//    case easy
+//    case medium
+//    case hard
+//    
+//    var id: String { self.rawValue }
+//}
+
 struct RecipeDetailView: View {
     @Bindable var recipe: Recipe
     @Environment(RecipeViewModel.self) private var viewModel
@@ -20,7 +28,7 @@ struct RecipeDetailView: View {
             Text(recipe.difficultyLevel)
             Text(recipe.ingredients)
             Text(recipe.instructions)
-            Text(recipe.tags)
+            Text(recipe.tags)            
             Text(recipe.servings)
         }
         .onChange(of: recipe.isFavorite) { viewModel.refreshData() }

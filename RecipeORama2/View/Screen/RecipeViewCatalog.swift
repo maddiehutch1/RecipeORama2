@@ -33,15 +33,29 @@ struct RecipeViewCatalog: View {
                         Text("❤️ Favorites")
                     }
                 }
+                
                 // list of recipes per each category
                 Section(header: Text("CATEGORIES")) {
                     ForEach(viewModel.categories, id: \.self) { category in
                         NavigationLink(
                             destination: recipeList(
-                                for: viewModel.recipes(for: category),
+                                for: viewModel.recipeTags(for: category),
                                 with: "\(category) Recipes")
                         ) {
                             Text(category)
+                        }
+                    }
+                }
+                
+                // list of recipes based on difficulty level
+                Section(header: Text("DIFFICULTY")) {
+                    ForEach(viewModel.difficultyLevels, id: \.self) { level in
+                        NavigationLink(
+                            destination: recipeList(
+                                for: viewModel.recipeLevels(for: level),
+                                with: "\(level) Recipes")
+                        ) {
+                            Text(level)
                         }
                     }
                 }
@@ -57,7 +71,7 @@ struct RecipeViewCatalog: View {
         } detail: {
             
             // main view of the viewcatalog
-            Text("Select an item")
+            Text("Select a recipe")
             
         }
     }

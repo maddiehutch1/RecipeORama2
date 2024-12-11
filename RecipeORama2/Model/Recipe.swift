@@ -2,7 +2,7 @@
 //  Recipe.swift
 //  RecipeORama2
 //
-//  Created by IS 543 on 12/7/24.
+//  Created by Madison Hutchings on 12/7/24.
 //
 
 import Foundation
@@ -10,7 +10,6 @@ import SwiftData
 
 @Model
 final class Recipe {
-    // var id: String { title }
     var title: String
     var ingredients: String
     var instructions: String

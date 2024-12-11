@@ -49,21 +49,18 @@ struct AddEditRecipeSheet: View {
                 Section(header: Text("Recipe Details")) {
                     TextField("Recipe Title", text: $recipe.title)
                     TextField("Author", text: $recipe.author)
-                    Toggle("Is Favorite", isOn: $recipe.isFavorite)
                     DatePicker("Date", selection: $recipe.date, displayedComponents: .date)
+                }
+                Section(header: Text("Specifics")) {
                     TextField("Serving Amount", text: $recipe.servings)
-                    TextField("Difficulty Level", text: $recipe.difficultyLevel)
+                    Picker("Difficulty Level", selection: $recipe.difficultyLevel) {
+                        Text("Easy").tag("Easy")
+                        Text("Medium").tag("Medium")
+                        Text("Hard").tag("Hard")
+                    }
                     TextField("Ingredients", text: $recipe.ingredients)
                     TextField("Instructions", text: $recipe.instructions)
                     TextField("Categories", text: $recipe.tags)
-                    
-                    
-                    //            Picker("Category", selection: $selectedCategory) {
-                    //                Text("Select a category").tag(nil as AnimalCategory?)
-                    //                ForEach(categories) { category in
-                    //                    Text(category.name).tag(category as AnimalCategory?)
-                    //                }
-                    //            }
                 }
             }
             .navigationTitle("\(isEditing ? "Edit" : "Add") Recipe")
@@ -76,6 +73,12 @@ struct AddEditRecipeSheet: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: saveRecipe) {
                         Text("Save")
+                    }
+                }
+                ToolbarItem {
+                    Button(action: { recipe.isFavorite.toggle() }) {
+                        Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
+                            .foregroundColor(recipe.isFavorite ? .red : .gray)
                     }
                 }
             }
