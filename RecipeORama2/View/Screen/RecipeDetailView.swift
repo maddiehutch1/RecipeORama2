@@ -6,14 +6,7 @@
 //
 
 import SwiftUI
-
-//enum difficultyLevel: String, Identifiable {
-//    case easy
-//    case medium
-//    case hard
-//    
-//    var id: String { self.rawValue }
-//}
+import MarkdownUI
 
 struct RecipeDetailView: View {
     @Bindable var recipe: Recipe
@@ -22,32 +15,66 @@ struct RecipeDetailView: View {
     @State var editSheetShow = false
     
     var body: some View {
-        List {
-            Text(recipe.title)
-            Text(recipe.author)
-            Text(recipe.difficultyLevel)
-            Text(recipe.ingredients)
-            Text(recipe.instructions)
-            Text(recipe.tags)            
-            Text(recipe.servings)
-        }
-        .onChange(of: recipe.isFavorite) { viewModel.refreshData() }
-        .toolbar{
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: editItem) {
-                    Label("Edit Item", systemImage: "pencil")
+        ZStack {
+            Color.orange.opacity(0.1).edgesIgnoringSafeArea(.all)
+            VStack {
+                Markdown("# \(recipe.title)")
+                Section(header: Markdown("## Recipe Details")) {
+                    HStack (spacing: 2) {
+                        VStack (spacing: 10) {
+                            Markdown("*Author*")
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Markdown("*Servings*")
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Markdown("*Difficulty*")
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Markdown("*Categories*")
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        }
+                        
+                        VStack (spacing: 10) {
+                            Text(recipe.author)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Text(recipe.servings)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Text(recipe.difficultyLevel)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Text(recipe.tags)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                                .lineLimit(4)
+                        }
+                    }
+                    .frame(maxWidth: 400, maxHeight: 200)
+                    .padding(.horizontal, 20)
+                    .border(Color.gray, width: 2)
+                    .background(Color.gray.opacity(0.1))
+                }
+                
+                Section(header: Markdown("## Ingredients")) {
+                    Text(recipe.ingredients)
+                }
+                Section(header: Markdown("## Instructions")) {
+                    Text(recipe.instructions)
                 }
             }
-            ToolbarItem {
-                // ChatGPT assistance - I originally used toggle to get the heart to work, but design was not bueno
-                Button(action: { recipe.isFavorite.toggle() }) {
-                    Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
-                        .foregroundColor(recipe.isFavorite ? .red : .gray)
+            .onChange(of: recipe.isFavorite) { viewModel.refreshData() }
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: editItem) {
+                        Label("Edit Item", systemImage: "pencil")
+                    }
+                }
+                ToolbarItem {
+                    // ChatGPT assistance - I originally used toggle to get the heart to work, but design was not bueno
+                    Button(action: { recipe.isFavorite.toggle() }) {
+                        Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
+                            .foregroundColor(recipe.isFavorite ? .red : .gray)
+                    }
                 }
             }
-        }
-        .sheet(isPresented: $editSheetShow) {
-            AddEditRecipeSheet(editRecipe: recipe)
+            .sheet(isPresented: $editSheetShow) {
+                AddEditRecipeSheet(editRecipe: recipe)
+            }
         }
     }
     

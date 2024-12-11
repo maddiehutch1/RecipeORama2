@@ -29,7 +29,7 @@ let sampleRecipes = [
         date: Date(),
         servings: "5",
         tags: "dinner, lunch, American",
-        difficultyLevel: "Intermediate",
+        difficultyLevel: "Medium",
         isFavorite: false
     ),
     Recipe(

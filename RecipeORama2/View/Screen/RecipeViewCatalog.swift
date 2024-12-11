@@ -69,11 +69,14 @@ struct RecipeViewCatalog: View {
             recipeList(for: viewModel.recipes, with: "Recipe O Rama")
             
         } detail: {
-            
             // main view of the viewcatalog
-            Text("Select a recipe")
-            
+            ZStack {
+                Color.orange.opacity(0.1).edgesIgnoringSafeArea(.all)
+                Text("Select a recipe")
+            }
+
         }
+        .background(Color.orange.opacity(0.1))
     }
 
     // function that displays list of recipes on nav bar that link to the main view's details

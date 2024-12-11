@@ -50,17 +50,19 @@ struct AddEditRecipeSheet: View {
                     TextField("Recipe Title", text: $recipe.title)
                     TextField("Author", text: $recipe.author)
                     DatePicker("Date", selection: $recipe.date, displayedComponents: .date)
-                }
-                Section(header: Text("Specifics")) {
                     TextField("Serving Amount", text: $recipe.servings)
                     Picker("Difficulty Level", selection: $recipe.difficultyLevel) {
                         Text("Easy").tag("Easy")
                         Text("Medium").tag("Medium")
                         Text("Hard").tag("Hard")
                     }
-                    TextField("Ingredients", text: $recipe.ingredients)
-                    TextField("Instructions", text: $recipe.instructions)
                     TextField("Categories", text: $recipe.tags)
+                }
+                Section(header: Text("Ingredients")) {
+                    TextField("Ingredients", text: $recipe.ingredients)
+                }
+                Section(header: Text("Instructions")) {
+                    TextField("Instructions", text: $recipe.instructions)
                 }
             }
             .navigationTitle("\(isEditing ? "Edit" : "Add") Recipe")
