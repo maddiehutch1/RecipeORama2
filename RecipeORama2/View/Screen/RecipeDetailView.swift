@@ -22,13 +22,19 @@ struct RecipeDetailView: View {
             Text(recipe.instructions)
             Text(recipe.tags)
             Text(recipe.servings)
-            Toggle("Is Favorite", isOn: $recipe.isFavorite)
         }
         .onChange(of: recipe.isFavorite) { viewModel.refreshData() }
         .toolbar{
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: editItem) {
                     Label("Edit Item", systemImage: "pencil")
+                }
+            }
+            ToolbarItem {
+                // ChatGPT assistance - I originally used toggle to get the heart to work, but design was not bueno
+                Button(action: { recipe.isFavorite.toggle() }) {
+                    Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
+                        .foregroundColor(recipe.isFavorite ? .red : .gray)
                 }
             }
         }

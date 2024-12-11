@@ -77,6 +77,8 @@ struct RecipeViewCatalog: View {
         }
         
         .navigationTitle(title)
+        
+        // Swift Documentation assistance
         .searchable(text: $searchText) {
             ForEach(recipes.filter {
                 $0.title.lowercased().contains(searchText.lowercased())

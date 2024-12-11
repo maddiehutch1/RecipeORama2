@@ -116,7 +116,7 @@ class RecipeViewModel {
             }
         }
         
-        categories = Array(tags)
+        categories = Array(tags).sorted()
     }
     
     func saveAllChanges() {
