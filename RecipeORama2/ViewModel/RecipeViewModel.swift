@@ -28,6 +28,9 @@ class RecipeViewModel {
     private(set) var favoriteRecipes: [Recipe] = []
     private(set) var categories: [String] = []
     private(set) var difficultyLevels: [String] = ["Easy", "Medium", "Hard"]
+
+    //    ATTEMPT to get #7 / #8 to work with categories
+    //    private(set) var selectedCategories: [String] = []
     
     // groups recipes with same categories together
     func recipeTags(for category: String) -> [Recipe] {
@@ -43,6 +46,13 @@ class RecipeViewModel {
         }
     }
     
+    //    ATTEMPT to get #7 / #8 to work with categories
+    // groups categories together for a specific recipe
+//    func getRecipesForTag(_ tag: String) -> [String] {
+//        categories
+//        
+//        return []
+//    }
     
     // MARK: - User intents
     

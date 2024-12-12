@@ -50,8 +50,13 @@ struct RecipeDetailView: View {
             Section(header: Markdown("## Ingredients")) {
                 Markdown(recipe.ingredients)
             }
+            
             Section(header: Markdown("## Instructions")) {
                 Markdown(recipe.instructions)
+            }
+            
+            Section(header: Markdown("## Notes")) {
+                Markdown(recipe.notes)
             }
         }
         .navigationTitle(recipe.title)

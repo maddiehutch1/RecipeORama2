@@ -23,7 +23,8 @@ struct AddEditRecipeSheet: View {
         servings: "",
         tags: "",
         difficultyLevel: "",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     )
     
     init(editRecipe: Recipe?) {
@@ -39,7 +40,7 @@ struct AddEditRecipeSheet: View {
             recipe.tags = recipeToEdit.tags
             recipe.difficultyLevel = recipeToEdit.difficultyLevel
             recipe.isFavorite = recipeToEdit.isFavorite
-            
+            recipe.notes = recipeToEdit.notes
         }
     }
     
@@ -59,12 +60,19 @@ struct AddEditRecipeSheet: View {
                     TextField("Categories", text: $recipe.tags)
                     
                 }
+                
                 Section(header: Text("Ingredients")) {
                     TextEditor(text: $recipe.ingredients)
                         .lineLimit(5)
                 }
+                
                 Section(header: Text("Instructions")) {
                     TextEditor(text: $recipe.instructions)
+                        .lineLimit(5)
+                }
+                
+                Section(header: Text("Notes")) {
+                    TextEditor(text: $recipe.notes)
                         .lineLimit(5)
                 }
             }
@@ -106,6 +114,7 @@ struct AddEditRecipeSheet: View {
                 recipeToEdit.timeToMake = recipe.timeToMake
                 recipeToEdit.tags = recipe.tags
                 recipeToEdit.isFavorite = recipe.isFavorite
+                recipeToEdit.notes = recipe.notes
             }
             
             viewModel.update(recipe)

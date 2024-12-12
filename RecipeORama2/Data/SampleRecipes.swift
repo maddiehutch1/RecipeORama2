@@ -39,7 +39,8 @@ let sampleRecipes = [
         servings: "5",
         tags: "dinner, lunch, American",
         difficultyLevel: "Medium",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     ),
     Recipe(
         title: "Potato Bacon Soup",
@@ -72,7 +73,8 @@ let sampleRecipes = [
         servings: "10",
         tags: "American, Soup",
         difficultyLevel: "Medium",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
     Recipe(
         title: "BLT Sandwich",
@@ -96,7 +98,8 @@ let sampleRecipes = [
         servings: "1",
         tags: "Lunch, Sandwich, American",
         difficultyLevel: "Easy",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     ),
     Recipe(
         title: "Spaghetti Bolognese",
@@ -123,7 +126,8 @@ let sampleRecipes = [
         servings: "4",
         tags: "Dinner, Italian",
         difficultyLevel: "Medium",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -152,7 +156,8 @@ let sampleRecipes = [
         servings: "4",
         tags: "Breakfast, American",
         difficultyLevel: "Easy",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     ),
 
     Recipe(
@@ -181,7 +186,8 @@ let sampleRecipes = [
         servings: "3",
         tags: "Asian, Dinner",
         difficultyLevel: "Medium",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -207,7 +213,8 @@ let sampleRecipes = [
         servings: "1",
         tags: "Breakfast, Healthy",
         difficultyLevel: "Easy",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -235,7 +242,8 @@ let sampleRecipes = [
         servings: "4",
         tags: "Mexican, Dinner",
         difficultyLevel: "Easy",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     ),
 
     Recipe(
@@ -266,7 +274,8 @@ let sampleRecipes = [
         servings: "24 cookies",
         tags: "Dessert, Baking",
         difficultyLevel: "Easy",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -290,7 +299,8 @@ let sampleRecipes = [
         servings: "1",
         tags: "Lunch, Quick",
         difficultyLevel: "Easy",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
     
     Recipe(
@@ -316,7 +326,8 @@ let sampleRecipes = [
         servings: "2",
         tags: "Salad, Healthy",
         difficultyLevel: "Easy",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     ),
 
     Recipe(
@@ -347,7 +358,8 @@ let sampleRecipes = [
         servings: "4",
         tags: "Dinner, Comfort Food",
         difficultyLevel: "Medium",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -376,7 +388,8 @@ let sampleRecipes = [
         servings: "3",
         tags: "Dinner, Vegetarian, Indian",
         difficultyLevel: "Medium",
-        isFavorite: false
+        isFavorite: false,
+        notes: ""
     ),
 
     Recipe(
@@ -402,7 +415,8 @@ let sampleRecipes = [
         servings: "2",
         tags: "Breakfast, Sweet",
         difficultyLevel: "Easy",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -430,7 +444,8 @@ let sampleRecipes = [
         servings: "4",
         tags: "Dinner, Italian",
         difficultyLevel: "Medium",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     ),
 
     Recipe(
@@ -456,6 +471,7 @@ let sampleRecipes = [
         servings: "2",
         tags: "Italian, Dinner, Pizza",
         difficultyLevel: "Easy",
-        isFavorite: true
+        isFavorite: true,
+        notes: ""
     )
 ]
