@@ -19,7 +19,7 @@ struct AddEditRecipeSheet: View {
         ingredients: "",
         instructions: "",
         author: "",
-        date: Date(),
+        timeToMake: "",
         servings: "",
         tags: "",
         difficultyLevel: "",
@@ -34,7 +34,7 @@ struct AddEditRecipeSheet: View {
             recipe.ingredients = recipeToEdit.ingredients
             recipe.instructions = recipeToEdit.instructions
             recipe.author = recipeToEdit.author
-            recipe.date = recipeToEdit.date
+            recipe.timeToMake = recipeToEdit.timeToMake
             recipe.servings = recipeToEdit.servings
             recipe.tags = recipeToEdit.tags
             recipe.difficultyLevel = recipeToEdit.difficultyLevel
@@ -49,7 +49,7 @@ struct AddEditRecipeSheet: View {
                 Section(header: Text("Recipe Details")) {
                     TextField("Recipe Title", text: $recipe.title)
                     TextField("Author", text: $recipe.author)
-                    DatePicker("Date", selection: $recipe.date, displayedComponents: .date)
+                    TextField("Time to Make", text: $recipe.timeToMake)
                     TextField("Serving Amount", text: $recipe.servings)
                     Picker("Difficulty Level", selection: $recipe.difficultyLevel) {
                         Text("Easy").tag("Easy")
@@ -57,12 +57,15 @@ struct AddEditRecipeSheet: View {
                         Text("Hard").tag("Hard")
                     }
                     TextField("Categories", text: $recipe.tags)
+                    
                 }
                 Section(header: Text("Ingredients")) {
-                    TextField("Ingredients", text: $recipe.ingredients)
+                    TextEditor(text: $recipe.ingredients)
+                        .lineLimit(5)
                 }
                 Section(header: Text("Instructions")) {
-                    TextField("Instructions", text: $recipe.instructions)
+                    TextEditor(text: $recipe.instructions)
+                        .lineLimit(5)
                 }
             }
             .navigationTitle("\(isEditing ? "Edit" : "Add") Recipe")
@@ -100,7 +103,7 @@ struct AddEditRecipeSheet: View {
                 recipeToEdit.instructions = recipe.instructions
                 recipeToEdit.author = recipe.author
                 recipeToEdit.difficultyLevel = recipe.difficultyLevel
-                recipeToEdit.date = recipe.date
+                recipeToEdit.timeToMake = recipe.timeToMake
                 recipeToEdit.tags = recipe.tags
                 recipeToEdit.isFavorite = recipe.isFavorite
             }
